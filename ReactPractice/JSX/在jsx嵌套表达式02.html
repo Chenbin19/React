@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在jsx嵌套表达式</title>
+  <script src="../build/react.development.js"></script>
+  <script src="../build/react-dom.development.js"></script>
+  <script src="../build/babel.min.js"></script>
+</head>
+
+<body>
+  <!-- 在jsx嵌套表达式 -->
+  <div id="example"></div>
+  <script type="text/babel">
+    function formatName(user) {
+      return user.firstName + ' ' + user.lastName;
+    }
+
+    const user = {
+      firstName: '陈先生',
+      lastName: '陈女士'
+    };
+
+    function getGreeting(user) {
+      if (user) {
+        return <h1>hello,{formatName(user)}!</h1>
+      }
+      return <h1>hello,stranger.</h1>
+    }
+
+    const element = (
+      <div>
+        {getGreeting(user)},
+        <h1>hello,{formatName(user)}</h1>
+      </div>
+    )
+
+    ReactDOM.render(
+      element,
+      document.getElementById("example")
+    )
+  </script>
+</body>
+
+</html>

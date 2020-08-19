@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsx特定属性</title>
+  <script src="../build/react.development.js"></script>
+  <script src="../build/react-dom.development.js"></script>
+  <script src="../build/babel.min.js"></script>
+  <style>
+    .title {
+      color: #f00
+    }
+  </style>
+</head>
+
+<body>
+  <div id="example"></div>
+  <script type="text/babel">
+    // 声明变量
+    let baidu = "https://www.baidu.com";
+    let title = "学习等于挣钱！"
+
+    // 写法一
+    const element = <div >
+      <h1>hello,word</h1>
+      <h2>good to see you here.</h2>
+      <a href={baidu}>百度</a>
+      <h3 className="title">{title}</h3>
+    </div>
+
+
+    // // 写法二
+    // const element = React.createElement(
+    //   'h3',
+    //   { className: 'title' },
+    //   title,
+    //   '学习使我快乐'
+    // )
+
+    ReactDOM.render(
+      element,
+      document.getElementById("example")
+    )
+  </script>
+</body>
+
+</html>

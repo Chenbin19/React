@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在jsx嵌套表达式</title>
+  <script src="../build/react.development.js"></script>
+  <script src="../build/react-dom.development.js"></script>
+  <script src="../build/babel.min.js"></script>
+</head>
+
+<body>
+  <!-- 在jsx嵌套表达式 -->
+  <div id="example"></div>
+  <script type="text/babel">
+    let name = "陈先生";
+    let element = <h1>hello,{name}</h1>;
+    ReactDOM.render(
+      element,
+      document.getElementById("example")
+    )
+  </script>
+</body>
+
+</html>
