@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="example"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+
+  <script type="text/babel">
+    /*
+     问题：数据保存在哪个组件内合适？
+     看数据是某个组件需要（给它），还是某些组件需要（给共同的父组件）
+    */
+
+    // 1.定义组件
+    class App extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          todos: ['吃饭', '睡觉', '打代码']
+        }
+      }
+      render() {
+        const {todos} = this.state
+        return (
+          <div>
+            <h1>Simple TODO List</h1>
+            <Add count={todos.length}/>
+            <List todos={todos} />
+          </div>
+        )
+      }
+    }
+    class Add extends React.Component {
+      render() {
+        return (
+          <div>
+            <input type="text" />
+            <button>Add #{this.props.count+1}</button>
+          </div>
+        )
+      }
+    }
+
+    Add.propTypes ={
+      count :PropTypes.number.isRequired
+    }
+    class List extends React.Component {
+      render() {
+        // const { todos } = this.props   写法二：可以取个变量{todos}
+        return (
+          <ul>
+            {
+              this.props.todos.map((todo, index) => <li key={index}>{todo}</li>)
+              // todos.map((todo, index) => <li key={index}>{todo}</li>)
+            }
+          </ul>
+        )
+      }
+    }
+    List.propTypes = {
+      todos: PropTypes.array.isRequired
+    }
+
+    // 2. 渲染组件标签
+    ReactDOM.render(<App />, document.getElementById("example"))
+  </script>
+</body>
+
+</html>

@@ -8,8 +8,7 @@
 </head>
 
 <body>
-  <div id="example1"></div>
-  <div id="example2"></div>
+  <div id="example"></div>
 
   <script type="text/javascript" src="../js/react.development.js"></script>
   <script type="text/javascript" src="../js/react-dom.development.js"></script>
@@ -24,10 +23,37 @@
     */
 
     // 1.定义组件
+    class MyComponent extends React.Component {
 
+      constructor(props) {
+        super(props)
+        this.showInput = this.showInput.bind(this)
+      }
+
+      showInput() {
+        const input = this.refs.content;
+        console.log("第一种", input.value)
+        console.log("第二种", this.input.value)
+      }
+
+      handleBlur(event) {
+        console.log(event.target.value)
+      }
+
+      render() {
+        return (
+          <div>
+            <input type="text" ref="content" />&nbsp;&nbsp;
+            <input type="text" ref={input => this.input = input} />&nbsp;&nbsp;
+            <button onClick={this.showInput}>提示输入</button>&nbsp;&nbsp;
+            <input type="text" placeholder="失去焦点提示内容" onBlur={this.handleBlur} />
+          </div>
+        )
+      }
+    }
 
     // 2. 渲染组件标签
-    
+    ReactDOM.render(<MyComponent />, document.getElementById("example"))
 
   </script>
 </body>
